@@ -1,6 +1,4 @@
 use std::str::FromStr;
-
-
 pub enum Method {
     GET,
     DELETE,
@@ -16,8 +14,8 @@ pub enum Method {
 impl FromStr for Method {
     type Err = MethodError;
 
-    fn from_str(verb: &str) -> Result<Self, Self::Err> {
-        match verb {
+    fn from_str(keyword: &str) -> Result<Self, Self::Err> {
+        match keyword {
             "GET" => Ok(Self::GET),
             "DELETE" => Ok(Self::DELETE),
             "POST" => Ok(Self::POST),
@@ -27,11 +25,9 @@ impl FromStr for Method {
             "OPTIONS" => Ok(Self::OPTIONS),
             "TRACE" => Ok(Self::TRACE),
             "PATCH" => Ok(Self::PATCH),
-            _ => Err(String::from("error")),
+            _ => Err(MethodError),
         }
     }
 }
 
-pub struct MethodError {
-
-}
+pub struct MethodError;
