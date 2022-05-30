@@ -1,9 +1,11 @@
 use std::collections::HashMap;
 
+#[derive(Debug)]
 pub struct QueryString<'buf> {
     data: HashMap<&'buf str, Value<'buf>>,
 }
 
+#[derive(Debug)]
 pub enum Value<'buf> {
     Single(&'buf str),
     Multiple(Vec<&'buf str>),
@@ -16,10 +18,10 @@ impl<'buf> QueryString<'buf> {
 }
 
 impl<'buf> From<&'buf str> for QueryString<'buf> {
-    fn from(s: &'buf str) -> Self {
+    fn from(string_slice: &'buf str) -> Self {
         let mut data = HashMap::new();
-
-        for sub_str in s.split('&') {
+        // a=1 & b=2 & c & d= & e=== & d=7 & d=abc      <= example of string_slice
+        for sub_str in string_slice.split('&') {
             let mut key = sub_str;
             let mut val = "";
             if let Some(i) = sub_str.find('=') {
