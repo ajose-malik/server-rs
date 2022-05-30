@@ -27,7 +27,6 @@ impl<'buf> Request<'buf> {
     }
 }
 
-
 impl<'buf> TryFrom<&'buf [u8]> for Request<'buf> {
     type Error = ParseError;
 

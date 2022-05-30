@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 
-use std::env;
 use server::Server;
+use std::env;
 use website_handler::WebsiteHandler;
 
 mod http;
