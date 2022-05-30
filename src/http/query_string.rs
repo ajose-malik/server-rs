@@ -20,7 +20,7 @@ impl<'buf> QueryString<'buf> {
 impl<'buf> From<&'buf str> for QueryString<'buf> {
     fn from(string_slice: &'buf str) -> Self {
         let mut data = HashMap::new();
-        // a=1 & b=2 & c & d= & e=== & d=7 & d=abc      <= example of string_slice
+        // a=1&b=2&c&d=&e===&d=7&d=abc      <= example of string_slice
         for sub_str in string_slice.split('&') {
             let mut key = sub_str;
             let mut val = "";
